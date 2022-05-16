@@ -18,24 +18,27 @@ import {
   Label,
   CustomInput
 } from 'reactstrap'
+
 const myaddress = () => {
   const [contacts, setContacts] = useState(data)
   const [addFormData, setAddFormData] = useState({
     fullName: "",
-    address: "",
-    phoneNumber: "",
-    state: "",
-    landmark:"",
-    pincode:""
+    number: "",
+    houseNo: "",
+    landmark: "",
+    city: "",
+    pincode: "",
+    state: ""
   })
 
   const [editFormData, setEditFormData] = useState({
     fullName: "",
-    address: "",
-    phoneNumber: "",
-    state: "",
-    landmark:"",
-    pincode:""
+    number: "",
+    houseNo: "",
+    landmark: "",
+    city: "",
+    pincode: "",
+    state: ""
   })
 
   const [editContactId, setEditContactId] = useState(null)
@@ -70,12 +73,12 @@ const myaddress = () => {
     const newContact = {
       id: nanoid,
       fullName: addFormData.fullName,
-      address: addFormData.address,
-      phoneNumber: addFormData.phoneNumber,
-      state: addFormData.state,
+      number: addFormData.number,
+      houseNo: addFormData.houseNo,
       landmark: addFormData.landmark,
-      pincode: addFormData.pincode
-
+      city:  addFormData.city,
+      pincode: addFormData.pincode,
+      state: addFormData.state
     }
 
     const newContacts = [...contacts, newContact]
@@ -88,9 +91,10 @@ const myaddress = () => {
     const editedContact = {
       id: editContactId,
       fullName: editFormData.fullName,
-      address: editFormData.address,
-      phoneNumber: editFormData.phoneNumber,
+      number: editFormData.number,
+      houseNo: editFormData.houseNo,
       landmark: editFormData.landmark,
+      city:  editFormData.city,
       pincode: editFormData.pincode,
       state: editFormData.state
     }
@@ -111,9 +115,10 @@ const myaddress = () => {
 
     const formValues = {
       fullName: contact.fullName,
-      address: contact.address,
-      phoneNumber: contact.phoneNumber,
+      number: contact.number,
+      houseNo: contact.houseNo,
       landmark: contact.landmark,
+      city: contact.city,
       pincode: contact.pincode,
       state: contact.state
     }
@@ -141,69 +146,61 @@ const myaddress = () => {
   <CardBody>    
       <Form onSubmit={handleAddFormSubmit}>  
       <CardTitle tag='h4'>Add New Address</CardTitle>
-      <Label for="fname">Full Name :</Label>
+      <Label for="fname"><span class="required-mark">*</span>&nbsp;Full Name :</Label>
         <Input
           type="text"
           name="fullName"
           required="required"
-          placeholder="Enter a name..."
           onChange={handleAddFormChange}
         />
-        <Label for="fname">Address:</Label>
+        <Label for="fname">
+<span class="required-mark">*</span>&nbsp;
+Number :</Label>
         <Input
           type="text"
-          name="address"
+          name="number"
           required="required"
-          placeholder="Enter an address..."
           onChange={handleAddFormChange}
         />
-        <Label for="fname">Phone Number:</Label>
+        <Label for="fname"><span class="required-mark">*</span>&nbsp;House No. :</Label>
         <Input
           type="number"
-          name="phoneNumber"
+          name="houseNo"
           required="required"
-          placeholder="Enter a phone number..."
           onChange={handleAddFormChange}
         />
-        <Label for="fname">Landmark :</Label>
+        <Label for="fname"><span class="required-mark">*</span>&nbsp;Landmark :</Label>
         <Input
           type="text"
           name="landmark"
           required="required"
-          placeholder="Enter landmark..."
           onChange={handleAddFormChange}
         />
-        <Label for="fname">Pincode:</Label>
+        <Label for="fname"><span class="required-mark">*</span>&nbsp;Town/City :</Label>
+        <Input
+          type="text"
+          name="city"
+          required="required"
+          onChange={handleAddFormChange}
+        />
+        <Label for="fname"><span class="required-mark">*</span>&nbsp;Pincode :</Label>
         <Input
           type="number"
           name="pincode"
           required="required"
-          placeholder="Enter pincode..."
           onChange={handleAddFormChange}
         />
-        <Label for="fname">State:</Label>
+        <Label for="fname"><span class="required-mark">*</span>&nbsp;State :</Label>
         <Input
           type="state"
           name="state"
           required="required"
-          placeholder="Enter your state..."
           onChange={handleAddFormChange}
         />
        <center> <Button type="submit"  className='mr-1' color='success'>Add</Button></center>
       </Form>
       </CardBody> </Card>
       <Form onSubmit={handleEditFormSubmit}>
-        {/*<table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Address</th>
-              <th>Phone Number</th>
-              <th>State</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>*/}
             {contacts.map((contact) => (
               <Fragment>
                 {editContactId === contact.id ? (
@@ -221,8 +218,6 @@ const myaddress = () => {
                 )}
               </Fragment>
             ))}
-          {/*</tbody>
-        </table>*/}
       </Form>
       </div>
   )

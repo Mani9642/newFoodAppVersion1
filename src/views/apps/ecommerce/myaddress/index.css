@@ -16,7 +16,7 @@ Form * {
 
 #card1{
   margin-bottom: 10px;
-  height: 560px;
+  height: 650px;
   width: 600px;
   border-color: #142F2F ;
 }
@@ -50,4 +50,9 @@ Form * {
   margin-left: 20px ;
   background-color: #FBFCFC;
  
+}
+.required-mark{
+  color: red;
+  font-size: 15px;
+
 }

@@ -26,10 +26,11 @@ const EditableRow = ({
       <table>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Address</th>&nbsp;
-              <th>Phone Number</th>&nbsp;
+              <th>Full Name</th>
+              <th>Number</th>&nbsp;
+              <th>House No</th>&nbsp;
               <th>Landmark</th>&nbsp;
+              <th>City</th>&nbsp;
               <th>Pincode</th>&nbsp;
               <th>State</th>
                  </tr>
@@ -40,7 +41,6 @@ const EditableRow = ({
         <Input
           type="text"
           required="required"
-          placeholder="Enter a name..."
           name="fullName"
           value={editFormData.fullName}
           onChange={handleEditFormChange}
@@ -50,9 +50,8 @@ const EditableRow = ({
         <Input
           type="text"
           required="required"
-          placeholder="Enter an address..."
-          name="address"
-          value={editFormData.address}
+          name="number"
+          value={editFormData.number}
           onChange={handleEditFormChange}
         />
       </td>&nbsp;
@@ -60,9 +59,8 @@ const EditableRow = ({
         <Input
           type="text"
           required="required"
-          placeholder="Enter a phone number..."
-          name="phoneNumber"
-          value={editFormData.phoneNumber}
+          name="houseNumber"
+          value={editFormData.houseNo}
           onChange={handleEditFormChange}
         />
       </td>&nbsp;
@@ -70,7 +68,6 @@ const EditableRow = ({
         <Input
           type="text"
           required="required"
-          placeholder="Enter landmark..."
           name="landmark"
           value={editFormData.landmark}
           onChange={handleEditFormChange}
@@ -80,7 +77,15 @@ const EditableRow = ({
         <Input
           type="text"
           required="required"
-          placeholder="Enter pincode..."
+          name="city"
+          value={editFormData.city}
+          onChange={handleEditFormChange}
+        />
+      </td>&nbsp;
+      <td>
+        <Input
+          type="text"
+          required="required"
           name="pincode"
           value={editFormData.pincode}
           onChange={handleEditFormChange}
@@ -90,7 +95,6 @@ const EditableRow = ({
         <Input
           type="state"
           required="required"
-          placeholder="Enter an state..."
           name="state"
           value={editFormData.state}
           onChange={handleEditFormChange}

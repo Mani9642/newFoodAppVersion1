@@ -61,7 +61,7 @@ rzp.open()
              <br>
              </br>
            <button className="btn btn-info" >
-         <Link to = '/apps/ecommerce/PaymentSucess'>
+         <Link to = '/apps/ecommerce/PaymentSuccess'>
           Cash on Delivery
           </Link>
           </button>
@@ -133,7 +133,7 @@ rzp.open()
           </CardBody>
         </Card>
       </div>
-      <div className='amount-payable checkout-options'>
+      {/* <div className='amount-payable checkout-options'>
         <Card>
           <CardHeader>
             <CardTitle tag='h4'>Price Details</CardTitle>
@@ -160,7 +160,7 @@ rzp.open()
             </ul>
           </CardBody>
         </Card>
-      </div>
+      </div> */}
     </Form>
   )
 }

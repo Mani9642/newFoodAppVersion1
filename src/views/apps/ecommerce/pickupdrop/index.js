@@ -47,15 +47,15 @@ const pickupdrop = () => {
     })
 }
 const mystyle = {  
-  width: "35px",
-  height: "35px"
+  width: "17px",
+  height: "17px"
 }
 
   return (
-    <div>
+    <center>
+       <div>
      {/*<Breadcrumbs  breadCrumbParent='Genie' breadCrumbParent4='Details'   breadCrumbActive='Pickup-Drop'/>*/}
       
-    <center>
     <Card id='card'>
       <CardHeader>
         <CardTitle tag='h3'></CardTitle>
@@ -66,30 +66,31 @@ const mystyle = {
         <Row>
           <Col sm='12'>
             <FormGroup>
-              <h6> <i class='fas fa-crosshairs'></i>Pickup Address</h6>
+            <Label class="label"><span class="required-mark">*</span>&nbsp;Pickup Address</Label>
               <tr>
               <td><Input type='text' id='name' required placeholder='Enter Pickup Address' onChange = {e => setPickupAddress(e.target.value)} /></td>
-             &nbsp; 
-             <td><Link to = '/apps/ecommerce/googlemap'>
-                <img src={img1} style={mystyle}  alt="no image" className="img"/>
-                </Link></td>
-                </tr>
+              </tr>
+           {/*  <tr><td><Link to = '/apps/ecommerce/googlemap'>
+               <img src={img1} style={mystyle}  alt="no image" id="img"/>
+                </Link></td> 
+            </tr> */}
             </FormGroup>
           </Col>
           <Col sm='12'>
           <FormGroup>
-              <h6>Drop Address</h6>
+          <Label class="label"><span class="required-mark">*</span>&nbsp;Drop Address</Label>
               <tr>
               <td><Input type='text' id='name' required placeholder='Enter Drop Address' onChange = {e => setDropAddress(e.target.value)} /></td>
-              &nbsp; <td>  <Link to = '/apps/ecommerce/googlemap'>
-                <img src={img1} style={mystyle}  alt="no image" className="img"/>
-                </Link></td>
-                </tr>
+              </tr>
+            {/*   <tr><td><Link to = '/apps/ecommerce/googlemap'>
+                <img src={img1} style={mystyle}  alt="no image" id="img"/>
+                </Link></td> 
+                </tr> */}
             </FormGroup>
           </Col>
           <Col sm='12'>
           <FormGroup>
-              <h6>Phone Number</h6>
+          <Label class="label"><span class="required-mark">*</span>&nbsp;Phone Number</Label>
               <tr>
               <td><Input type='number' id='nameVertical'required  placeholder='Enter phone number'onChange = {e => setPhoneNumber(e.target.value)} />
               </td></tr>
@@ -97,7 +98,7 @@ const mystyle = {
           </Col>
           <Col sm='12'>
               <FormGroup>
-                <h6>Add Task</h6>
+              <Label class="label"><span class="required-mark">*</span>&nbsp;Add Task</Label>
                 <tr>
               <td> <select className='custom-select' onChange = {e => setTaskDetails(e.target.value)} >
                     <option  required value="HomeFood">Home Food</option>
@@ -109,15 +110,15 @@ const mystyle = {
             </Col>
             <Col sm='12'>
             <FormGroup>
-                <h6>Task Description</h6>
+            <Label class="label"><span class="required-mark">*</span>&nbsp;Task Description</Label>
                 <tr>
               <td> <Input type='text' id='nameVertical' placeholder='Enter description' required onChange = {e => setDescription(e.target.value)}  />
                 </td></tr></FormGroup>
             </Col>
-
+           
           <Col sm='12'>
           <FormGroup className='flex'>
-                  <Button.Ripple className='mr-1' color='primary' type='submit'>
+          <br/> <Button.Ripple className='mr-1' color='primary' type='submit'>
                     Proceed
                   </Button.Ripple>
                 </FormGroup>
@@ -126,8 +127,8 @@ const mystyle = {
       </Form>
     </CardBody>      
     </Card>
-    </center>
     </div>
+    </center>
    )
   } 
 export default pickupdrop

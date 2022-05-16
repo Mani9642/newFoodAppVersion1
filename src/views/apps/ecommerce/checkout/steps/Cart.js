@@ -154,7 +154,7 @@ const validate = () => {
                 </li> */}
                 <li className='price-detail'>
                   <div className='detail-title'>Delivery Charges</div>
-                  <div className='detail-amt discount-amt text-success'>Free</div>
+                  <div className='detail-amt discount-amt text-success'>₹35</div>
                 </li>
               </ul>
               <Label for='instruction' className='form-label font-weight-bold'>
@@ -165,7 +165,7 @@ const validate = () => {
               <ul className='list-unstyled'>
                 <li className='price-detail'>
                   <div className='detail-title detail-total'>Total</div>
-                  <div className='detail-amt font-weight-bolder'>₹ {total + 30 - (sucess ? 100 : 0) }</div>
+                  <div className='detail-amt font-weight-bolder'>₹ {total + 30 + 35 - (sucess ? 100 : 0) }</div>
                 </li>
               </ul>
               <Button.Ripple

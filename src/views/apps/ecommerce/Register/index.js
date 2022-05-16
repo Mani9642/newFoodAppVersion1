@@ -53,6 +53,10 @@ const submitHandler = (e) => {
     setMessage(" ")
   }, [UserName])
 
+  const mystyle = {  
+    color: "red",
+    fontSize: "15px"
+   }
   return (
 
     <Card>
@@ -71,42 +75,42 @@ const submitHandler = (e) => {
           <Row>
             <Col sm='10'>
               <FormGroup>
-                <Label>First Name</Label>
+                <Label>First Name<span style={mystyle}>*</span></Label>
                 <Input type='text' id='nameVertical' required placeholder='Enter first name' onChange = {e => setfirstName(e.target.value)}/>
               </FormGroup>
             </Col>
 
             <Col sm='10'>
               <FormGroup>
-                <Label>Last Name</Label>
+                <Label>Last Name<span style={mystyle}>*</span></Label>
                 <Input type='text' id='nameVertical' placeholder='Enter Last name'  required onChange = {e => setlastName(e.target.value)}/>
               </FormGroup>              
             </Col>
 
             <Col sm='10'>
               <FormGroup>
-                <Label>userName</Label>
+                <Label>Username<span style={mystyle}>*</span></Label>
                 <Input type='text' id='nameVertical' required placeholder='Enter User name' onChange = {e => setuserName(e.target.value)}/>
               </FormGroup>
             </Col>
 
             <Col sm='10'>
               <FormGroup>
-                <Label>Email</Label>
+                <Label>Email<span style={mystyle}>*</span></Label>
                 <Input type='text' id='nameVertical' required placeholder='email@example.com' onChange = {e => setemail(e.target.value)}/>
               </FormGroup>
             </Col>
 
             <Col sm='10'>
               <FormGroup>
-                <Label>password</Label>
+                <Label>Password<span style={mystyle}>*</span></Label>
                 <Input type='password' id='nameVertical' required placeholder='enter password' onChange = {e => setpassword(e.target.value)}/>
               </FormGroup>
             </Col>
 
             <Col sm='10'>
               <FormGroup>
-                <Label>PhoneNumber</Label>
+                <Label>PhoneNumber<span style={mystyle}>*</span></Label>
                 <Input type='number' id='namevertical' required placeholder='enter phone number' onChange = {e => setphoneNumber(e.target.value)}/>
               </FormGroup>
             </Col>

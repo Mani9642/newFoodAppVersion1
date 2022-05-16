@@ -14,7 +14,7 @@ import { handleLogout } from '@store/actions/auth'
 
 // ** Third Party Components
 import { UncontrolledDropdown, DropdownMenu, DropdownToggle, DropdownItem } from 'reactstrap'
-import { User, Mail, CheckSquare, MessageSquare, Settings, CreditCard, HelpCircle, Power } from 'react-feather'
+import { User, Mail, CheckSquare, MessageSquare, Settings, CreditCard, HelpCircle, Power, Home } from 'react-feather'
 
 // ** Default Avatar Image
 import defaultAvatar from '@src/assets/images/portrait/small/avatar-s-11.jpg'
@@ -51,6 +51,10 @@ const UserDropdown = () => {
           <User size={14} className='mr-75' />
           <span className='align-middle'>Profile</span>
         </DropdownItem>
+        <DropdownItem tag={Link} to='/apps/ecommerce/myaddress'>
+          <Home size={14} className='mr-75' />
+          <span className='align-middle'>My Address</span>
+       </DropdownItem>
         {/*<DropdownItem tag={Link} to='/apps/email'>
           <Mail size={14} className='mr-75' />
           <span className='align-middle'>Inbox</span>
