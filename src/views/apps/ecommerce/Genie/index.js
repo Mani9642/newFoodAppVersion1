@@ -16,7 +16,7 @@ import { Form,  Button} from 'reactstrap'
             {/* <div class="success-message">Success! Thank you for registering</div> */}
            <br/> <h4 className='h4'>Pick or Drop Any items</h4>
             <br/><br/>
-            <Link to = '/apps/ecommerce/pickupdrop'>
+            <Link to = '/apps/ecommerce/phlogin'>
                 <center><Button   id='pick-drop' className="btn btn-warning" color='primary' variant="primary">Add Pick/Drop Details</Button> </center>
                 </Link><br/><hr/>
                 <p><center>Some things we can pickup and drop for you</center></p>

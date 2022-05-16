@@ -25,7 +25,8 @@ const ProductsPage = props => {
     deleteWishlistItem,
     deleteCartItem,
     setSidebarOpen,
-    rating
+    rating,
+    location
   } = props
 
   // ** Handles pagination
@@ -38,7 +39,7 @@ const ProductsPage = props => {
       dispatch(getProducts({ ...store.params, page: val }))
     }
   }
-
+  console.log(location)
   // ** Render pages
   const renderPageItems = () => {
     const arrLength =
@@ -98,6 +99,7 @@ const ProductsPage = props => {
               deleteCartItem={deleteCartItem}
               deleteWishlistItem={deleteWishlistItem}
               rating={rating}
+              location={location}
             />
             <Pagination className='d-flex justify-content-center'>
               <PaginationItem

@@ -1,3 +1,11 @@
+import { startOfDay } from "@fullcalendar/core"
+import { combineReducers } from 'redux'
+
+const rootReducer = combineReducers({
+  state: (state = {}) => state
+})
+
+
 const initialState = {
   products: [],
   restaurants: [],
@@ -8,7 +16,8 @@ const initialState = {
   cart: [],
   productDetail: {},
   params: {},
-  totalProducts: 0
+  totalProducts: 0,
+  users: []
 }
 
 const ecommerceReducer = (state = initialState, action) => {
@@ -29,12 +38,12 @@ const ecommerceReducer = (state = initialState, action) => {
       return { ...state, items: state.items.map(item => { return item.itemId === action.productId ? { ...item, isInCart:false} : item })}
     case 'ADD_TO_WISHLIST':
       return { ...state }
+    case 'GET_PERSONALINFO':
+       return {  ...state, users: action.data.users}
     case 'ADD_TO_CART':
       return { ...state, items: state.items.map(item => { return item.itemId === action.productId ? { ...item, isInCart:true} : item })}
     case 'GET_PRODUCT':
       return { ...state, productDetail: action.data.product }
-    case 'GET_ORDERS':
-      return { ...state, orders: action.data, params: action.params, totalOrders: action.data.length } 
     case 'ADJUST_QUANTITY':
       return {...state,
         cart: state.cart.map(item => { 

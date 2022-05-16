@@ -78,7 +78,8 @@ const Address = props => {
                 <Input
                   name='checkout-name'
                   id='checkout-name'
-                  placeholder='John Doe'onChange = {e => setFullName(e.target.value)}
+                  required
+                  onChange = {e => setFullName(e.target.value)}
                   innerRef={register({ required: true })}
                   className={classnames({ 'is-invalid': errors['checkout-name'] })}
                 />
@@ -91,7 +92,7 @@ const Address = props => {
                   type='number'
                   name='checkout-number'
                   id='checkout-number'
-                  placeholder='0123456789'
+                  required
                   onChange = {e => setNumber(e.target.value)}
                   innerRef={register({ required: true })}
                   className={classnames({ 'is-invalid': errors['checkout-number'] })}
@@ -105,7 +106,7 @@ const Address = props => {
                   type='number'
                   name='checkout-apt-number'
                   id='checkout-apt-number'
-                  placeholder='9447 Glen Eagles Drive'
+                  required
                   onChange = {e => setHouseNo(e.target.value)}
                   innerRef={register({ required: true })}
                   className={classnames({ 'is-invalid': errors['checkout-apt-number'] })}
@@ -118,7 +119,7 @@ const Address = props => {
                 <Input
                   name='checkout-landmark'
                   id='checkout-landmark'
-                  placeholder='Near Apollo Hospital'
+                  required
                   onChange = {e => setLandmark(e.target.value)}
                   innerRef={register({ required: true })}
                   className={classnames({ 'is-invalid': errors['checkout-landmark'] })}
@@ -131,7 +132,7 @@ const Address = props => {
                 <Input
                   name='checkout-city'
                   id='checkout-city'
-                  placeholder='Tokyo'
+                  required
                   onChange = {e => setCity(e.target.value)}
                   innerRef={register({ required: true })}
                   className={classnames({ 'is-invalid': errors['checkout-city'] })}
@@ -145,7 +146,7 @@ const Address = props => {
                   type='number'
                   name='checkout-pincode'
                   id='checkout-pincode'
-                  placeholder='201301'
+                  required
                   onChange = {e => setPincode(e.target.value)}
                   innerRef={register({ required: true })}
                   className={classnames({ 'is-invalid': errors['checkout-pincode'] })}
@@ -156,16 +157,16 @@ const Address = props => {
               <FormGroup className='mb-2'>
                 <Label for='checkout-state'>State:</Label>
                 <div className='mb-2'>
-                  <select className='custom-select' onChange ={(e) => {
+                  <select className='custom-select' required onChange ={(e) => {
                     const selectedState = e.target.value
                     setState(selectedState)
                   }}>
                     <option value="Telangana">Telangana</option>
                     <option value="Andhrapradesh">Andhrapradesh</option>
-                    <option value="Banglore">Banglore</option>
-                    <option value="Chennai">Chennai</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Tamilnadu">Tamilnadu</option>
                   </select>
-                  {State}
+                  {/* {State} */}
                 </div>
                 
               </FormGroup>
@@ -173,7 +174,7 @@ const Address = props => {
             <Col md='6' sm='12'>
               <FormGroup className='mb-2'>
                 <Label for='add-type'>Address Type:</Label>
-                <Input type='select' name='add-type' id='add-type' onChange =   {(e) => {
+                <Input type='select' name='add-type' id='add-type' required onChange =   {(e) => {
                   const selectedAddressType = e.target.value
                     setAddressType(selectedAddressType)
                     }}>
@@ -198,8 +199,8 @@ const Address = props => {
           </CardHeader>
           <CardBody>
             <CardText className='mb-0'>{Number}</CardText>
-            <CardText>House Number:{HouseNo},&nbsp;{Landmark}</CardText>
-            <CardText>{City},&nbsp;{State}</CardText>
+            <CardText>{HouseNo}&nbsp;{Landmark}</CardText>
+            <CardText>{City}&nbsp;{State}</CardText>
             <CardText>{Pincode}</CardText>
             <Button.Ripple
               block
@@ -212,6 +213,7 @@ const Address = props => {
             </Button.Ripple>
           </CardBody>
         </Card>
+        
       </div>
     </Form>
   )

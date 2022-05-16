@@ -205,6 +205,11 @@ const AppRoutes = [
     component: lazy(() => import('../../views/apps/ecommerce/Genie'))
   },
   {
+    path: '/apps/ecommerce/phlogin',
+    className: 'ecommerce-application', 
+    component: lazy(() => import('../../views/apps/ecommerce/phlogin')) 
+  },
+  {
     path: '/apps/ecommerce/product-detail',
     exact: true,
     className: 'ecommerce-application',

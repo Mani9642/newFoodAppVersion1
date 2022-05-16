@@ -43,7 +43,7 @@ const ProductsHeader = props => {
               <span className='search-results'>{store.totalRestaurants} Results Found</span>
             </div>
             <div className='view-options d-flex'>
-              {/*<UncontrolledButtonDropdown className='dropdown-sort'>
+              {/* <UncontrolledButtonDropdown className='dropdown-sort'>
                 <DropdownToggle className='text-capitalize mr-1' color='primary' outline caret>
                   {sortToggleText[store.params.sortBy]}
                 </DropdownToggle>

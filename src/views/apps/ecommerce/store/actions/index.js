@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-
 import useJwt from '../../../../../auth/jwt/useJwt'
 // ** GET Products
 import GlobalVariable from "../../../../../path/global"
@@ -54,28 +53,6 @@ export const getRestaurants = params => {
   }
 }
 
-export const getOrders = params => {
-  return dispatch => {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${useJwt.getToken()}`
-    const authAxios = axios.create({
-      baseURL: baseApiUrl
-    })
-    const searchWord = params.q
-    console.log(searchWord)
-    if (searchWord === '') {
-      return authAxios.get('payments/list', { params}).then(res => {
-        console.log(res)
-        dispatch({ type: 'GET_ORDERS', data: res.data, params })
-      })
-    } else {
-      return authAxios.get(`restaurants/search/${searchWord}`, { params}).then(res => {
-        console.log(res)
-        dispatch({ type: 'GET_ORDERS', data: res.data, params })
-      })
-    }
-  }
-}
-
 export const getItems = params => {
   return dispatch => {
     const id = params.i
@@ -124,6 +101,15 @@ export const getWishlistItems = () => {
   return dispatch => {
     return axios.get('/apps/ecommerce/wishlist').then(res => {
       dispatch({ type: 'GET_WISHLIST', data: res.data })
+    })
+  }
+}
+
+// ** GET USER INFO
+export const getPersonalInfo = () => {
+  return dispatch => {
+    return axios.get('/apps/ecommerce/profile').then(per => {
+      dispatch({type: 'GET_PERSONALINFO', data: per.data })
     })
   }
 }

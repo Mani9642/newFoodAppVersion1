@@ -4,6 +4,8 @@ import classnames from 'classnames'
 import { Plus, Minus } from 'react-feather'
 import { useState, useEffect } from 'react'
 import { InputGroup, InputGroupAddon, Input, Button } from 'reactstrap'
+import { useDispatch} from 'react-redux'
+import { adjustQuantity, getCartItems} from '@src/views/apps/ecommerce/store/actions'
 
 // ** Styles
 import './number-input.scss'
@@ -13,6 +15,7 @@ const KEYCODE_UP = 38
 const KEYCODE_DOWN = 40
 
 const NumberInput = props => {
+  const dispatch = useDispatch()
   // ** Props
   const {
     min,
@@ -31,6 +34,8 @@ const NumberInput = props => {
     className,
     onDecrement,
     onIncrement,
+    price,
+    id,
     inputClassName,
     ...rest
   } = props
@@ -62,7 +67,7 @@ const NumberInput = props => {
       setCount(countCondition())
 
       if (onDecrement) {
-        onIncrement(count)
+        onDecrement(price)
       }
     }
   }
@@ -91,7 +96,7 @@ const NumberInput = props => {
       setCount(countCondition())
 
       if (onIncrement) {
-        onIncrement(count)
+        onIncrement(price)
       }
     }
   }
@@ -119,6 +124,7 @@ const NumberInput = props => {
     if (onChange) {
       onChange(count)
     }
+    dispatch(adjustQuantity(id, count))
   }, [count])
 
   return (

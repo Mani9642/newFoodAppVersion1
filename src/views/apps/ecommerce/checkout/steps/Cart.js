@@ -6,14 +6,14 @@ import { useDispatch, useSelector } from 'react-redux'
 // ** Third Party Components
 import classnames from 'classnames'
 import { X, Star } from 'react-feather'
-import { Card, CardBody, CardText, Button, Badge, InputGroup, InputGroupAddon, Input, InputGroupText } from 'reactstrap'
+import { Card, CardBody, CardText, Button, Badge, InputGroup, InputGroupAddon, Input, InputGroupText, Label } from 'reactstrap'
 
 // ** Custom Components
 import NumberInput from '@components/number-input'
 
 const Cart = props => {
   // ** Props
-  const { products, stepper, deleteCartItem, addToWishlist, deleteWishlistItem, getCartItems } = props
+  const { products, stepper, deleteCartItem, addToWishlist, deleteWishlistItem, getCartItems, setPaymentAmount} = props
 
   // ** Function to convert Date
   const formatDate = (value, formatting = { month: 'short', day: 'numeric', year: 'numeric' }) => {
@@ -157,6 +157,10 @@ const validate = () => {
                   <div className='detail-amt discount-amt text-success'>Free</div>
                 </li>
               </ul>
+              <Label for='instruction' className='form-label font-weight-bold'>
+                Add Instructions:
+              </Label>
+              <Input type='textarea' rows='2' id='note'  />
               <hr />
               <ul className='list-unstyled'>
                 <li className='price-detail'>
@@ -165,11 +169,15 @@ const validate = () => {
                 </li>
               </ul>
               <Button.Ripple
-                color='danger'
+                color='primary'
                 classnames='btn-next place-order'
                 block
                 disabled={!products.length}
-                onClick={() => stepper.next()}
+                onClick={() => { 
+                  return (
+                          stepper.next(), 
+                          setPaymentAmount(total)) 
+                        }}
               >
                 Place Order
               </Button.Ripple>

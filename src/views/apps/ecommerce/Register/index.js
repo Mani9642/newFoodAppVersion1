@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import axios from "axios"
 import {
   Card,
@@ -29,7 +29,7 @@ const Register = () => {
   const [pwd, setpassword] = useState()
   const [phNum, setphoneNumber] = useState()
   const [message, setMessage] = useState("")
-  //const history = useHistory()
+  const history = useHistory()
 
 const submitHandler = (e) => {
   e.preventDefault()
@@ -42,7 +42,7 @@ const submitHandler = (e) => {
  authAxios.post('users/register', object).then(response => {
    console.log(response)
    setMessage("successfull")
-  // history.pushState("/apps/ecommerce/checkout")
+  history.push("/apps/ecommerce/checkout")
  }).catch((err) => {
    console.log(err)
  })
@@ -79,7 +79,7 @@ const submitHandler = (e) => {
             <Col sm='10'>
               <FormGroup>
                 <Label>Last Name</Label>
-                <Input type='text' id='nameVertical' required placeholder='Enter Last name' onChange = {e => setlastName(e.target.value)}/>
+                <Input type='text' id='nameVertical' placeholder='Enter Last name'  required onChange = {e => setlastName(e.target.value)}/>
               </FormGroup>              
             </Col>
 
@@ -113,7 +113,7 @@ const submitHandler = (e) => {
 
             <Col sm='10'>
               <FormGroup className='flex'>
-                <Button.Ripple tag={Link} to='/apps/ecommerce/checkout' className='mr-1' color='primary' type='submit'>
+                <Button.Ripple className='mr-1' color='primary' type='submit'>
                   Submit & Checkout
                 </Button.Ripple>
               </FormGroup>

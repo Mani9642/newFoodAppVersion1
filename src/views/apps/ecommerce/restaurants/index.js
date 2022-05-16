@@ -50,6 +50,12 @@ const Restaurants = () => {
   const handleChange = (event) => {
   setRating(event.target.value)
   }
+  
+  const [location, setLocation] = useState(0)
+  const handleValueChange = (event) => {
+    console.log(event.target.value)
+    setLocation(event.target.value)
+  }
 
   return (
     <Fragment>
@@ -68,8 +74,9 @@ const Restaurants = () => {
         deleteCartItem={deleteCartItem}
         deleteWishlistItem={deleteWishlistItem}
         rating = {rating}
+        location = {location}
       />
-    <Sidebar sidebarOpen={sidebarOpen} handleChange = {handleChange} />
+    <Sidebar sidebarOpen={sidebarOpen} handleChange = {handleChange} handleValueChange = {handleValueChange}/>
     </Fragment>
   )
 }

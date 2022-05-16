@@ -1,5 +1,6 @@
 // ** Custom Hooks
 import { useRTL } from '@hooks/useRTL'
+import { useParams } from "react-router-dom"
 
 // ** Third Party Components
 import wNumb from 'wnumb'
@@ -10,124 +11,43 @@ import { Card, CardBody, Row, Col, CustomInput, Button } from 'reactstrap'
 
 // ** Styles
 import '@styles/react/libs/noui-slider/noui-slider.scss'
+import { event } from 'jquery'
+import { useState, useEffect } from 'react'
+import {useDispatch, useSelector } from 'react-redux'
 
 const Sidebar = props => {
   // ** Props
-  const { sidebarOpen, handleChange } = props
+  const { sidebarOpen, handleChange, handleValueChange } = props
+  const dispatch = useDispatch()
 
   // ** Hooks
   const [isRtl, setIsRtl] = useRTL()
 
+  const store = useSelector(state => state.ecommerce)
+  //console.log(store)
+  const items = store.items
+  //console.log(items)
+
+  const {id} = useParams()
+  //console.log(id)
+  const {catid} = useParams()
+  //console.log(catid)
+  
+
   // ** Array of categories
-  const categories = [
-    {
-      id: 'starters',
-      title: 'Strarters',
-      defaultChecked: true
-    },
-    {
-      id: 'maincourse',
-      title: 'Main Course'
-    },
-    {
-      id: 'biryani',
-      title: 'Rice and Biryani'
-    },
-    {
-      id: 'chinese',
-      title: 'Chinese'
-    },
-    {
-      id: 'icecreams',
-      title: 'Ice Creams'
-    },
-    {
-      id: 'pizza',
-      title: 'Pizza'
-    },
-    {
-      id: 'cakes',
-      title: 'Cakes'
-    }
-    /*{
-      id: 'office-school',
-      title: 'Office & School Supplies'
-    },
-    {
-      id: 'tv-home-theater',
-      title: 'TV & Home Theater'
-    },
-    {
-      id: 'video-games',
-      title: 'Video Games'
-    }*/
-  ]
 
   // ** Array of brands
-  const brands = [
-    {
-      title: 'LB Nagar',
-      total: 110
-    },
-    {
-      title: 'Kothapet',
-      total: 211,
-      checked: true
-    },
-    {
-      title: 'Banjara Hills',
-      total: 686
-    },
-    {
-      title: 'Begumpet',
-      total: 201
-    },
-    {
-      title: 'Ameerpet',
-      total: 322,
-      checked: true
-    },
-    {
-      title: 'Kompally',
-      total: 264
-    },
-    {
-      title: 'Kondapur',
-      total: 345
-    },
-    {
-      title: 'Kukatpally',
-      total: 520
-    },
-    {
-      title: 'Secunderabad',
-      total: 420
-    },
-    {
-      title: 'Gachibowli',
-      total: 216
-    }
-  ]
-
-  // ** Array of ratings
-  const ratings = [
-    {
-      ratings: 4,
-      total: 160
-    },
-    {
-      ratings: 3,
-      total: 176
-    },
-    {
-      ratings: 2,
-      total: 291
-    },
-    {
-      ratings: 1,
-      total: 190
-    }
-  ]
+  
+  const [filterPrice, setFilterPrice] = useState(({
+    isAgree : "false"
+    
+   }))
+   const params = {
+     q: '',
+     sortBy: 'featured',
+     perPage: 9,
+     page: 1
+   }
 
   return (
     <div className='sidebar-detached sidebar-left'>
@@ -144,30 +64,44 @@ const Sidebar = props => {
           </Row>
           <Card>
             <CardBody>
-              {/* <div className='brands'>
-                <h6 className='filter-title'>Popular localities</h6>
-                <ul className='list-unstyled brand-list'>
-                  {brands.map(brand => {
-                    return (
-                      <li key={brand.title}>
-                        <CustomInput
-                          type='checkbox'
-                          id={brand.title}
-                          label={brand.title}
-                          defaultChecked={brand.checked}
-                        />
-                        <span>{brand.total}</span>
-                      </li>
-                    )
-                  })}
+            <div className='multi-range-locations'>
+                <h6 className='filter-title mt-0'>Multi Range locations</h6>
+                <ul className='list-unstyled locations-range'>
+                <li>
+                    <CustomInput id='all' name='locations-range-radio' type='radio' label='All '  defaultChecked  value = "" onClick={handleValueChange} /><br/>
+                  </li>
+                  {/* <li>
+                    <CustomInput id='Hyderabad' name='locations-range-radio' type='radio' label='Hyderabad' value ="Hyderabad" onClick={handleValueChange}/><br/>
+                  </li> */}
+                  <li>
+                    <CustomInput id='Kukatpally' name='locations-range-radio' type='radio' label='Kukatpally'   value ="Kukatpally" onChange={handleValueChange} /><br/>
+                  </li>
+                  <li>
+                    <CustomInput id='Banjarahills' name='locations-range-radio' type='radio' label='Banjarahills'   value ="Banjarahills" onChange={handleValueChange} /><br/>
+                  </li>
+                  <li>
+                    <CustomInput id='Gachibowli' name='locations-range-radio' type='radio' label='Gachibowli'   value ="Gachibowli" onChange={handleValueChange} /><br/>
+                  </li>
+                  <li>
+                    <CustomInput id='KPHB' name='locations-range-radio' type='radio' label='KPHB'   value ="KPHB" onChange={handleValueChange} /><br/>
+                  </li>
+                  <li>
+                    <CustomInput id='LB Nagar' name='locations-range-radio' type='radio' label='LB Nagar'   value ="LB Nagar" onChange={handleValueChange} /><br/>
+                  </li>
                 </ul>
+              </div>
+              
+              {/* <div id='clear-filters'>
+                <Button.Ripple color='primary' block>
+                  Clear All Filters
+                </Button.Ripple>
               </div> */}
 
               <div className='multi-range-price'>
                 <h6 className='filter-title mt-0'>Ratings</h6>
                 <ul className='list-unstyled price-range'>
                   <li>
-                    <CustomInput id='5 star' name='rating-range-radio' type='radio' label='★★★★★' value = '5' onClick={handleChange}onClick={handleChange}/>
+                    <CustomInput id='5 star' name='rating-range-radio' type='radio' label='★★★★★' value = '5' onClick={handleChange}/>
                   </li>
                   <li>
                     <CustomInput id='4 star' name='rating-range-radio' type='radio' label='★★★★✰' value = '4' onClick={handleChange}/>
@@ -187,11 +121,11 @@ const Sidebar = props => {
                 </ul>
               </div>
               
-              <div id='clear-filters'>
+              {/* <div id='clear-filters'>
                 <Button.Ripple color='primary' block>
                   Clear All Filters
                 </Button.Ripple>
-              </div>
+              </div> */}
             </CardBody>
           </Card>
         </div>

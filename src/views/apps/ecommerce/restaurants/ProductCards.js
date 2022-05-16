@@ -17,7 +17,8 @@ const ProductCards = props => {
     getCartItems,
     addToWishlist,
     deleteWishlistItem,
-    rating
+    rating,
+    location
   } = props
 
   let {products} = props
@@ -45,6 +46,10 @@ const ProductCards = props => {
     if (rating) {
       //console.log(rating)
       products = products.filter(restaurant => restaurant.rating === parseInt(rating))
+    }
+    console.log(location)
+    if (location) {
+      products = products.filter(item => item.restAddress === location)
     }
 
     if (products.length) {
@@ -104,7 +109,6 @@ const ProductCards = props => {
               </div>
               <Button
                 color='primary'
-                className='btn-cart move-cart'
                 tag = {Link}
                 className='btn-cart move-cart' to={`/apps/ecommerce/items/${item.restId}`}
               >

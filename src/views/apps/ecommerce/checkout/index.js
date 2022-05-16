@@ -34,6 +34,12 @@ const Checkout = () => {
     dispatch(getCartItems())
   }, [])
 
+const [total, setTotal] = useState(0)
+  const setPaymentAmount = (total) => {
+    setTotal(total)
+
+  }
+
   const steps = [
     {
       id: 'cart',
@@ -49,6 +55,7 @@ const Checkout = () => {
           addToWishlist={addToWishlist}
           deleteCartItem={deleteCartItem}
           deleteWishlistItem={deleteWishlistItem}
+          setPaymentAmount = {setPaymentAmount}
         />
       )
     },
@@ -64,7 +71,7 @@ const Checkout = () => {
       title: 'Payment',
       subtitle: 'Select Payment Method',
       icon: <CreditCard size={18} />,
-      content: <Payment stepper={stepper} />
+      content: <Payment stepper={stepper} total = {total} />
     }
   ]
 
