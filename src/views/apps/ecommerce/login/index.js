@@ -2,7 +2,9 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link, useHistory } from 'react-router-dom'
 import LoginOuthGoogle from "./LoginOuthGoogle"
-import { useForm } from "react-hook-form"
+import { Lock, Mail } from 'react-feather'
+import { useDispatch} from 'react-redux'
+import {handleLogin} from '../../../../redux/actions/auth/index'
 import {
     Card,
     CardHeader,
@@ -15,6 +17,9 @@ import {
     Form,
     Button,
     Label,
+    InputGroup,
+    InputGroupText,
+    InputGroupAddon,
     CustomInput
   } from 'reactstrap'
   
@@ -38,7 +43,9 @@ const Login = () => {
     const [pwd, setpassword] = useState()
     const [message, setMessage] = useState("")
     const history = useHistory()
-
+    const [userData, setUserData] = useState()
+    const dispatch = useDispatch()
+    
 const submitHandler = (e) => {
     const object = {email:Email, password:pwd}
     const authAxios = axios.create({
@@ -48,7 +55,8 @@ const submitHandler = (e) => {
 
     //axios.defaults.headers.common['Authentication'] = `Bearer ${useJwt.getToken()}`
     authAxios.post('users/login', object).then(response => {
-        const status = response.status
+        console.log(response.data)
+        setUserData(response.data)
         setMessage("successfull")
         history.push("/apps/ecommerce/checkout")
     }).catch((err) => {
@@ -56,6 +64,10 @@ const submitHandler = (e) => {
     })
        
 }
+
+useEffect(() => {
+    dispatch(handleLogin(userData)) 
+    }, [submitHandler])
 
     useEffect(() => {
         setMessage("")
@@ -85,16 +97,28 @@ const submitHandler = (e) => {
                 <Row>
                     <Col sm='12'>
                         <FormGroup>
-                            <Label>Email<span style={mystyle}>*</span></Label>
-                            <input style = {inputFeildStyle} name = "email" type='text' id='emailVertical' placeholder='email@example.com' onChange = {e => setemail(e.target.value)} ref = {register({required:"Email is required", pattern: { value: /^\S+@\S+$/i, message: "This is not a valid email"}})}/> 
-                            <span style={{ color: "red"}}>{errors.email?.message}</span>                           
+                            <Label>Email</Label>
+                            <InputGroup className='input-group-merge' tag={FormGroup}>
+                <InputGroupAddon addonType='prepend'>
+                  <InputGroupText>
+                    <Mail size={15} />
+                  </InputGroupText>
+                </InputGroupAddon>
+                            <Input type='text' id='emailVertical' required placeholder='email@example.com' onChange = {e => setemail(e.target.value)}/>  
+                            </InputGroup>                          
                         </FormGroup>
                     </Col>
                     <Col sm='12'>
                         <FormGroup>
-                            <Label>Password<span style={mystyle}>*</span></Label>
-                            <input type='password'  style = {inputFeildStyle} name = "password" id='passwordVertical'  placeholder='Enter password' onChange = {e => setpassword(e.target.value)} ref = {register({required:"password is required"})}/>
-                            <span style={{ color: "red"}}>{errors.password?.message}</span> 
+                            <Label>password</Label>
+                            <InputGroup className='input-group-merge' tag={FormGroup}>
+                <InputGroupAddon addonType='prepend'>
+                  <InputGroupText>
+                    <Lock size={15} />
+                  </InputGroupText>
+                </InputGroupAddon>
+                            <Input type='password' id='passwordVertical' required placeholder='Enter password' onChange = {e => setpassword(e.target.value)}/>
+                            </InputGroup> 
                         </FormGroup>
                     </Col>
                     <Col>

@@ -29,6 +29,7 @@
     "cleave.js": "1.6.0",
     "draft-js": "0.11.7",
     "draftjs-to-html": "0.9.1",
+    "env-cmd": "^10.1.0",
     "file-saver": "2.0.2",
     "firebase": "^4.8.0",
     "flatpickr": "4.6.3",
@@ -100,7 +101,9 @@
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
     "lint": "eslint src/**/*.js src/**/*.jsx",
-    "lint:fix": "eslint src/**/*.js --fix"
+    "lint:fix": "eslint src/**/*.js --fix",
+    "start:development":"env-cmd -f .env.development react-app-rewired start",
+    "start:production":"env-cmd -f .env.production react-app-rewired start"
   },
   "eslintConfig": {
     "extends": "react-app"

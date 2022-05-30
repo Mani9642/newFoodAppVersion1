@@ -82,7 +82,7 @@ const submitHandler = (e) => {
 
             <Col sm='10'>
               <FormGroup>
-                <Label>Last Name<span style={mystyle}>*</span></Label>
+                <Label>Last Name</Label>
                 <Input type='text' id='nameVertical' placeholder='Enter Last name'  required onChange = {e => setlastName(e.target.value)}/>
               </FormGroup>              
             </Col>
