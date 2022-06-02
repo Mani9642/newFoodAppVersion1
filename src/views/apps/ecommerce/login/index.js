@@ -28,16 +28,6 @@ import {
   
 
 const Login = () => {
-    const { register, handleSubmit, errors} = useForm()
-
-    const inputFeildStyle = {
-        width: "100%",
-        padding: "12px 20px",
-        margin: "8px 0",
-        display: "inline-block",
-        border: "1px solid #ccc",
-        boxSizing: "border-box"
-      }
 
     const [Email, setemail] = useState()
     const [pwd, setpassword] = useState()
@@ -45,8 +35,10 @@ const Login = () => {
     const history = useHistory()
     const [userData, setUserData] = useState()
     const dispatch = useDispatch()
+const [incorrectPassword, setIncorrectPassword] = useState(false)
     
 const submitHandler = (e) => {
+    e.preventDefault()
     const object = {email:Email, password:pwd}
     const authAxios = axios.create({
         baseURL: baseApiUrl
@@ -61,6 +53,10 @@ const submitHandler = (e) => {
         history.push("/apps/ecommerce/checkout")
     }).catch((err) => {
         console.log(err)
+
+   if (err.response.status === 500) {
+        setIncorrectPassword(true)
+      }
     })
        
 }
@@ -72,7 +68,7 @@ useEffect(() => {
     useEffect(() => {
         setMessage("")
     }, [Email]) 
-
+    
     const mystyle = {  
         color: "red",
         fontSize: "15px"
@@ -91,32 +87,33 @@ useEffect(() => {
             <div></div>
         
         )}   
+ {incorrectPassword && <b style={{ color: "red"}}> &nbsp;&nbsp; Incorrect password</b>}
 
         <CardBody>
-            <Form onSubmit={handleSubmit(submitHandler)}>
+            <Form onSubmit={submitHandler}>
                 <Row>
                     <Col sm='12'>
                         <FormGroup>
-                            <Label>Email</Label>
+                            <Label>Email<span style={mystyle}>*</span></Label>
                             <InputGroup className='input-group-merge' tag={FormGroup}>
-                <InputGroupAddon addonType='prepend'>
+                {/*<InputGroupAddon addonType='prepend'>
                   <InputGroupText>
                     <Mail size={15} />
-                  </InputGroupText>
-                </InputGroupAddon>
+                  </InputGroupText> 
+        </InputGroupAddon>*/}
                             <Input type='text' id='emailVertical' required placeholder='email@example.com' onChange = {e => setemail(e.target.value)}/>  
                             </InputGroup>                          
                         </FormGroup>
                     </Col>
                     <Col sm='12'>
                         <FormGroup>
-                            <Label>password</Label>
+                            <Label>password<span style={mystyle}>*</span></Label>
                             <InputGroup className='input-group-merge' tag={FormGroup}>
-                <InputGroupAddon addonType='prepend'>
+               {/*} <InputGroupAddon addonType='prepend'>
                   <InputGroupText>
                     <Lock size={15} />
                   </InputGroupText>
-                </InputGroupAddon>
+    </InputGroupAddon> */}
                             <Input type='password' id='passwordVertical' required placeholder='Enter password' onChange = {e => setpassword(e.target.value)}/>
                             </InputGroup> 
                         </FormGroup>
@@ -130,7 +127,7 @@ useEffect(() => {
                   <Button.Ripple tag={Link} to='/apps/ecommerce/Register' className='mr-1' color='success' type='submit'>
                     Register 
                   </Button.Ripple><br/><br/>
-                  <span>Sign in with google</span>
+                  <span></span>
                   <LoginOuthGoogle/>
                     </FormGroup>
                     </Col>

@@ -100,24 +100,26 @@ const Sidebar = props => {
               <div className='multi-range-price'>
                 <h6 className='filter-title mt-0'>Ratings</h6>
                 <ul className='list-unstyled price-range'>
-                  <li>
-                    <CustomInput id='5 star' name='rating-range-radio' type='radio' label='★★★★★' value = '5' onClick={handleChange}/>
-                  </li>
-                  <li>
-                    <CustomInput id='4 star' name='rating-range-radio' type='radio' label='★★★★✰' value = '4' onClick={handleChange}/>
-                  </li>
-                  <li>
-                    <CustomInput id='3 star' name='rating-range-radio' type='radio' label='★★★✰✰' value = '3' onClick={handleChange}/>
-                  </li>
-                  <li>
-                    <CustomInput id='2 star' name='rating-range-radio' type='radio' label='★★✰✰✰' value = '2' onClick={handleChange}/>
-                  </li>
-                  <li>
-                    <CustomInput id='1 star' name='rating-range-radio' type='radio' label='★✰✰✰✰' value = '1' onClick={handleChange}/>
-                  </li>
-                  <li>
-                    <CustomInput id='all' name='rating-range-radio' type='radio' label='All' defaultChecked value = '' onClick={handleChange}/>
-                  </li>
+                <li>
+                  <CustomInput id='All' name='rating-range-radio' type='radio' label='All' defaultChecked value = '' onClick={handleChange}/>
+                </li> 
+                <li>
+                  <CustomInput id='5 star' name='rating-range-radio' type='radio' label='★★★★★' value = '5' onClick={handleChange}/>
+                </li>
+                <li>
+                  <CustomInput id='4 star' name='rating-range-radio' type='radio' label='★★★★✰' value = '4' onClick={handleChange}/>
+                </li>
+                <li>
+                  <CustomInput id='3 star' name='rating-range-radio' type='radio' label='★★★✰✰' value = '3' onClick={handleChange}/>
+                </li>
+                <li>
+                  <CustomInput id='2 star' name='rating-range-radio' type='radio' label='★★✰✰✰' value = '2' onClick={handleChange}/>
+                </li>  
+                <li>
+                  <CustomInput id='1 star' name='rating-range-radio' type='radio' label='★✰✰✰✰' value = '1' onClick={handleChange}/>
+                </li>
+                            
+                  
                 </ul>
               </div>
               

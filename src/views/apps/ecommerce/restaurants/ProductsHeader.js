@@ -68,9 +68,9 @@ const ProductsHeader = props => {
                   </DropdownItem>
                 </DropdownMenu>
                 </UncontrolledButtonDropdown> */}
-               <Link to = '/apps/ecommerce/Genie'>
+               {/* <Link to = '/apps/ecommerce/Genie'>
                 <img src={img1} style={mystyle} alt="no image" className="img"/>
-                </Link>
+                </Link> */}
                 {/*<Link to = '/apps/ecommerce/Genie'>
                 <Button   id='pick-drop' className='text-capitalize mr-1' color='primary' variant="primary">Genie</Button> 
                 </Link>

@@ -52,7 +52,7 @@ rzp.open()
 
             <ul className='other-payment-options list-unstyled'>
               <li>
-            <button className="btn btn-info" onClick={ handleSubmit }>Online Payment</button>
+            {/* <button className="btn btn-info" onClick={ handleSubmit }>Online Payment</button> */}
             <br></br>
             </li>
            <view style={{flex:1, justifyContent:'center', alignItems:'center'}}>
